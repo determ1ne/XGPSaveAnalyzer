@@ -20,7 +20,7 @@ namespace GPSaveConverter.Xbox
         const int ContainerHeaderLength = 8;
         private string containerPath;
         private byte[] containerData;
-        private List<XboxFileInfo> fileList;
+        public List<XboxFileInfo> fileList;
         private byte containerVersion;
         internal uint unknown1;
         internal ulong unknown2;
@@ -41,6 +41,14 @@ namespace GPSaveConverter.Xbox
 
 
             initPaths();
+        }
+
+        public XboxFileContainer(string containerPath)
+        {
+            this.containerPath = containerPath;
+            var f = new FileInfo(containerPath);
+            saveFilePath = f.Directory.FullName;
+            parseContainer();
         }
 
         internal DateTime getModifiedTime()
