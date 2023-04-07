@@ -1,10 +1,16 @@
-# PC Gamepass Save File Converter
-Games available through PC Game Pass or purchased via the Xbox app keep their save files in an arbitrary file structure. This means if you purchase a game on another storefront moving your save files to or from the Xbox version is extremely difficult. This software aims to make that process easy.
+# PC Gamepass Save File Container Analyzer
 
-Finds games by listing any Microsoft Store package with a wgs folder (believed to stand for "Windows Game Save"). This means some non-game applications may be shown
+In PC Gamepass, user save files grouped and stored in different folders called "container". Each container contains one or more save files along with a container index. Save files in container use an uppercase GUID filename which is hard to recognize and backup.  
 
-There is an extremely small (as of now at least) game library that contains the locations of non-Xbox save files. Some other game storefronts/save systems support multiple profiles, if this is the case with your game profiles will be shown by the file name identifying them. If your game is not found in this library you will be prompted to select the location manually when a package is selected.
+This tool is modified from [Fr33dan/GPSaveConverter](https://github.com/Fr33dan/GPSaveConverter) and allows user to read container indices for dumping save files.
 
-It is strongly recommended you back up both save file folders before using this application. 
+The root folder of PC Gamepass save file is `%LOCALAPPDATA%\Packages\Microsoft.624F8B84B80_8wekyb3d8bbwe\SystemAppData\wgs\[USERID]-[RANDOMSTRING]`. Multiple root folders may be used by PC Gamepass.
 
-![Save File Converter v0 4 3 Screenshot](https://user-images.githubusercontent.com/4670572/159533555-dbc49599-7620-4774-bd78-501e997ac22c.png)
+```
+- [root]
+  - AAAAAAAAAAAAAAAA_BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+    - CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+      - container.[number]
+      - DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+      - ...
+```
